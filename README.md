@@ -24,7 +24,7 @@ and <A HREF="https://numtseng.com/modules/">https://numtseng.com/modules/</A>
 &nbsp;Javascript ready to use: <A HREF="https://numtseng.com/modules/konekti/Konekti.js">https://numtseng.com/modules/konekti/Konekti.js</A>, <A HREF="https://numtseng.com/modules/jxon.js">https://numtseng.com/modules/jxon.js</A>, and 
  <A HREF="https://numtseng.com/modules/jxon_wrap.js">https://numtseng.com/modules/jxon_wrap.js</A>
 
-&nbsp;Java/Javascript source code: <A HREF="https://github.com/jgomezpe/kompari/">https://github.com/jgomezpe/aplikigo/</A>
+&nbsp;Java/Javascript source code: <A HREF="https://github.com/jgomezpe/kompari/">https://github.com/jgomezpe/jxon/</A>
 
 &nbsp;Java API documentation: <A HREF="https://numtseng.com/api/jxon/java/">https://numtseng.com/api/jxon/java/</A>
 
