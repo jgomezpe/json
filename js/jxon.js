@@ -3,9 +3,10 @@
 * jxon.js
 * <P>Java Script for JSON and JXON (JSON with blob encoding) processing.</P>
 * <P> Requires base64.js, kompari.js, and lifya.js (lifya_wrap.js). </P>
+* <P>A numtseng module <A HREF="https://numtseng.com/modules/jxon.js">https://numtseng.com/modules/jxon.js</A> 
 *
 * Copyright (c) 2021 by Jonatan Gomez-Perdomo. <br>
-* All rights reserved. See <A HREF="https://github.com/jgomezpe/lifya">License</A>. <br>
+* All rights reserved. See <A HREF="https://github.com/jgomezpe/jxon">License</A>. <br>
 *
 * @author <A HREF="https://disi.unal.edu.co/~jgomezpe/"> Professor Jonatan Gomez-Perdomo </A>
 * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
