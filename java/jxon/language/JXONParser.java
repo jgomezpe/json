@@ -42,9 +42,7 @@ import lifya.lookahead.LAHParser;
 import lifya.lookahead.Rule;
 
 /**
- * <p>Title:JXONParser</p>
- *
- * <p>Description: A JXON/JSON syntactic parser.</p>
+ * <p>A JXON/JSON syntactic parser.</p>
  *
  */
 public class JXONParser extends LAHParser{

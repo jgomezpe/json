@@ -47,9 +47,7 @@ import lifya.lexeme.Symbol;
 import lifya.lookahead.LAHLexer;
 
 /**
- * <p>Title: JXONLexer</p>
- *
- * <p>Description: Definition of the lexer for a language which parses JXON/JSON objects</p>
+ * <p>Definition of the lexer for a language which parses JXON/JSON objects</p>
  */
 public class JXONLexer extends LAHLexer{
 	/**

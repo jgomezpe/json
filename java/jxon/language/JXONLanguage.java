@@ -42,9 +42,7 @@ import speco.jxon.JXON;
 import lifya.Language;
 
 /**
- * <p>Title: JXONLanguage</p>
- *
- * <p>Description: Definition of a language for parsing JXON/JSON objects</p>
+ * <p>Definition of a language for parsing JXON/JSON objects</p>
  */
 public class JXONLanguage extends Language<JXON>{
 	/**

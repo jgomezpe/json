@@ -41,9 +41,7 @@ package jxon.language;
 import lifya.lookahead.ListRule;
 
 /**
- * <p>Title: JXONList</p>
- *
- * <p>Description: Rule for JXON/JSON lists.</p>
+ * <p>Rule for JXON/JSON lists.</p>
  *
  */
 public class JXONList extends ListRule{

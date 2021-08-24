@@ -43,9 +43,7 @@ import lifya.lexeme.Symbol;
 import lifya.lookahead.Rule;
 
 /**
- * <p>Title: JXONValue</p>
- *
- * <p>Description: Rule for JXON/JSON values.</p>
+ * <p>Rule for JXON/JSON values.</p>
  *
  */
 public class JXONValue extends Rule{

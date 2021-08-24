@@ -298,7 +298,7 @@ class JXONLanguage extends Language{
      * @param str Input string
      * @return The JSON/JSON represented by the input String
      */
-    parse(str){ return this.get(str) },
+    parse(str){ return this.get(str) }
 
     /**
      * Stringifies an object

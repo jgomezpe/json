@@ -44,9 +44,7 @@ import jxon.language.JXONLanguage;
 import speco.jxon.JXON;
 
 /**
- * <p>Title:JXON Reader</p>
- *
- * <p>Description: Reads JSON/JXON (JSON that can store blob/byte arrays directly using Base64).</p>
+ * <p>Reads JSON/JXON (JSON that can store blob/byte arrays directly using Base64).</p>
  *
  */
 public class JXONReader {

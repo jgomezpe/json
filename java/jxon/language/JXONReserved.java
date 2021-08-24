@@ -43,9 +43,7 @@ import lifya.Token;
 import lifya.lexeme.ID;
 
 /**
- * <p>Title: JXONReserved</p>
- *
- * <p>Description: Lexema for JXON/JSON reserved words (true, false, null).</p>
+ * <p>Lexema for JXON/JSON reserved words (true, false, null).</p>
  *
  */
 public class JXONReserved extends ID<Object>{

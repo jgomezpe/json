@@ -46,9 +46,7 @@ import kopii.Copier;
 import lifya.stringify.Stringifier;
 
 /**
- * <p>Title: JXONTest</p>
- *
- * <p>Description: Test JXON parsing.</p>
+ * <p>Test JXON parsing.</p>
  *
  */
 public class JXONTest {

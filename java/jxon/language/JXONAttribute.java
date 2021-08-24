@@ -45,9 +45,7 @@ import lifya.lexeme.StringParser;
 import lifya.lookahead.Rule;
 
 /**
- * <p>Title: JXONAttribute</p>
- *
- * <p>Description: Rule for JXON/JSON attributes. Rule for JXON/JSON attributes.</p>
+ * <p>Rule for JXON/JSON attributes. Rule for JXON/JSON attributes.</p>
  *
  */
 public class JXONAttribute extends Rule{

@@ -45,9 +45,7 @@ import lifya.Token;
 import speco.array.Array;
 
 /**
- * <p>Title: JXONMeaner</p>
- *
- * <p>Description: Produces (if possible) a JXON/JSON object from a JXON syntactic token.</p>
+ * <p>Produces (if possible) a JXON/JSON object from a JXON syntactic token.</p>
  *
  */
 public class JXONMeaner implements Meaner{
