@@ -15,14 +15,35 @@
 
 ////////// JXON //////////////////
 
+/**
+ * Rule for JXON/JSON attributes. Rule for JXON/JSON attributes
+ */
 class JXONAttribute extends Rule{
+    /**
+     * Type of the Syntactic Rule for JXON attributes (pairs key/value)
+     */
     static TAG = "ATTRIBUTE"
     
+    /**
+     * Creates a JXON attribute rule
+     * @param parser Syntactic parser using the rule
+     */
     constructor(parser) { super(JXONAttribute.TAG, parser) }
     
+    /**
+     * Determines if the JXON attribute rule can start with the given token
+     * @param t Token to analyze
+     * @return <i>true</i> If the rule can start with the given token <i>false</i> otherwise
+     */
     startsWith(t) { return t.type == StringParser.TAG }
     
-    analize(lexer, current=lexer.next()) {
+    /**
+     * Creates a JXON attribute rule token using the <i>current</i> token as first token to analyze
+     * @param lexer Lexer 
+     * @param current Initial token
+     * @return Rule token
+     */
+    analyze(lexer, current=lexer.next()) {
         if(!this.startsWith(current)) return current.toError()
         var input = current.input
         var start = current.start
@@ -32,27 +53,66 @@ class JXONAttribute extends Rule{
         if(current==null) return this.eof(input,end)
         if(!this.check_symbol(current, ':')) return current.toError()
         end = current.end
-        pair[1] = this.parser.analize(lexer,JXONValue.TAG)
+        pair[1] = this.parser.analyze(lexer,JXONValue.TAG)
         if(pair[1].isError()) return pair[1]
         return this.token(input,start,pair[1].end,pair)
     }
 }
 
+/**
+ * Rule for JXON/JSON lists.
+ */
 class JXONList extends ListRule{
+    /**
+     * Type of the Syntactic Rule for JXON lists
+     */
     static TAG = "LIST"
+    /**
+     * Creates a JXON list rule
+     * @param parser Syntactic parser using the rule
+     */
     constructor(parser) { super(JXONList.TAG, parser, JXONValue.TAG) }
 }
 
+/**
+ * <p>Title: JXONObj</p>
+ *
+ * <p>Description: Rule for JXON/JSON objects.</p>
+ *
+ */
 class JXONObj extends ListRule{
+    /**
+     * Type of the Syntactic Rule for JXON attributes (pairs key/value)
+     */
     static TAG = "OBJ" 
+    /**
+     * Creates a JXON object rule
+     * @param parser Syntactic parser using the rule
+     */ 
     constructor(parser) { super(JXONObj.TAG, parser, JXONAttribute.TAG, '{', '}', ',') }
 }
 
+/**
+ * Lexema for JXON/JSON reserved words (true, false, null).
+ */
 class JXONReserved extends ID{
+    /**
+     * Type of the lexema for JXON reserved words
+     */
     static TAG = "reserved"
 
+    /**
+     * Default constructor
+     */
     constructor(){ super(JXONReserved.TAG) } 
     
+    /**
+     * Creates a token with the JXON reserved words type
+     * @param input Input source from which the token was built
+     * @param start Starting position of the token in the input source
+     * @param end Ending position (not included) of the token in the input source
+     * @return ID token
+     */
     match(input, start, end) {
         var t = super.match(input, start, end)
         switch(t.value) {
@@ -72,24 +132,51 @@ class JXONReserved extends ID{
         }
     }
 
+    /**
+     * Determines if the lexeme can start with the given character (a letter or '_')
+     * @param c Character to analyze
+     * @return <i>true</i> If the lexeme can start with the given character <i>false</i> otherwise
+     */
     startsWith(c) { return c=='t' || c=='f' || c=='n' }
 }
 
+/**
+ * Rule for JXON/JSON values
+ */
 class JXONValue extends Rule{
+    /**
+     * Type of the Syntactic Rule for JXON values
+     */
     static TAG = "VALUE" 
+
+    /**
+     * Creates a JXON value rule
+     * @param parser Syntactic parser using the rule
+     */
     constructor(parser) { super(JXONValue.TAG, parser) }
     
+    /**
+     * Determines if the JXON value rule can start with the given token
+     * @param t Token to analyze
+     * @return <i>true</i> If the rule can start with the given token <i>false</i> otherwise
+     */
     startsWith(t) {
         if(t.type == Token.ERROR) return false
         if(t.type == Symbol.TAG) return t.value=='[' || t.value== '{'
         return true 
     }
     
-    analize(lexer, current=lexer.next()) {
+    /**
+     * Creates a JXON value rule token using the <i>current</i> token as first token to analyze
+     * @param lexer Lexer 
+     * @param current Initial token
+     * @return Rule token
+     */
+    analyze(lexer, current=lexer.next()) {
         if(current.type==Symbol.TAG) {
             switch(current.value) {
-                case '[': return this.parser.rule(JXONList.TAG).analize(lexer, current)
-                case '{': return this.parser.rule(JXONObj.TAG).analize(lexer, current)
+                case '[': return this.parser.rule(JXONList.TAG).analyze(lexer, current)
+                case '{': return this.parser.rule(JXONObj.TAG).analyze(lexer, current)
                 default: return current.toError();
             }
         }
@@ -97,7 +184,13 @@ class JXONValue extends Rule{
     }
 }
 
+/**
+ * Definition of the lexer for a language which parses JXON/JSON objects
+ */
 class JXONLexer extends LookAHeadLexer{
+    /**
+     * Set of lexema used by the JXON parser
+     */
     static lexemes = [
         new NumberParser(),
         new StringParser(),
@@ -107,10 +200,20 @@ class JXONLexer extends LookAHeadLexer{
         new Space()
     ]
     
+    /**
+     * Creates a Lexer for JXON objects
+     */
     constructor() { super([Space.TAG], JXONLexer.lexemes) }
 }
 
+/**
+ * <A JXON/JSON syntactic parser.
+ */
 class JXONParser extends Parser{
+    /**
+     * Rules defining the JXON syntactic parser
+     * @return Rules defining the JXON syntactic parser
+     */
     static rules(){ 
         return [
             new JXONObj(null),
@@ -120,18 +223,41 @@ class JXONParser extends Parser{
         ]
     }
     
+    /**
+     * Creates a JXON/JSON Syntactic parser
+     */
     constructor(){ super(JXONParser.rules(), JXONObj.TAG) }    
 }
 
+/**
+ * Produces (if possible) a JXON/JSON object from a JXON syntactic token.
+ */
 class JXONMeaner extends Meaner{
-    static TAG = "JSON"
+    /**
+     * JXON objects TAG
+     */
+    static TAG = "JXON"
+    
+    /**
+     * Create a JXON/JSON meaner
+     */    
     constructor() { super() }
         
+    /**
+     * Creates a JXON token (token with a JXON object as value) from a Syntactic token
+     * @param obj Syntactic token 
+     * @return JXON token from a Syntactic token
+     */
     apply(obj){
         if( obj.isError() ) return obj
         return new Token(obj.input, obj.start, obj.end, this.inner_apply(obj), JXONMeaner.TAG)
     }
 
+    /**
+     * Creates a JXON value from a value hold by a syntactic token 
+     * @param obj Token been analyzed
+     * @return JXON value from a value hold by a syntactic token
+     */
     inner_apply(obj){
         switch( obj.type ) {
             case JXONObj.TAG:
@@ -156,21 +282,24 @@ class JXONMeaner extends Meaner{
     }
 }
 
+/**
+ * Definition of a language for parsing JXON/JSON objects
+ */
 class JXONLanguage extends Language{
+    /**
+     * Creates a JXONLanguage
+     */
     constructor() {
         super(new JXONLexer(), new JXONParser(), new JXONMeaner())
     }
-}
-
-/**
- * <p>Title: Stringifier</p>
- *
- * <p>Description: Stringifies (Stores into a String) an object</p>
- *
- */
-JXON = {
-    parse(str){ return new JXONLanguage().get(str) },
     
+    /**
+     * Parses a String for a JSON/JXON object
+     * @param str Input string
+     * @return The JSON/JSON represented by the input String
+     */
+    parse(str){ return this.get(str) },
+
     /**
      * Stringifies an object
      * @param obj Object to be stringified
@@ -190,7 +319,7 @@ JXON = {
         if(Array.isArray(thing) ){
             txt = "["
             for( var i=0; i<thing.length; i++ ){
-                txt += comma + JXON.stringify( thing[i] )
+                txt += comma + this.stringify( thing[i] )
                 comma = ','
             }    
             txt += ']'    
@@ -200,7 +329,7 @@ JXON = {
         txt = '{'
         comma=""
         for( var c in thing ){
-            txt += comma + JXON.stringify(c) + ":" + JXON.stringify( thing[c] )
+            txt += comma + this.stringify(c) + ":" + this.stringify( thing[c] )
             comma = ','
         } 
         txt += '}'
@@ -208,7 +337,24 @@ JXON = {
     }
 }
 
+/**
+ * JXON/JSON global object
+ */
+JXON = new JXONLanguage()
+
+/**
+ * Object that is configurable by using a JXON object and can provided a JXON version of itself</p>
+ *
+ */
 class Configurable{
-    config(json){}
+    /**
+     * Configures the object with the information provided by the JXON object
+     * @param jxon COnfiguration information
+     */
+    config(jxon){}
+    /**
+     * Creates a JXON version of itself
+     * @return A JXON version of itself
+     */
     jxon(){}
 }

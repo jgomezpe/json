@@ -1,4 +1,6 @@
 /**
+ * <p>JXON language.</p>
+ *
  * <p>Copyright: Copyright (c) 2019</p>
  *
  * <h3>License</h3>
@@ -37,60 +39,3 @@
  * @version 1.0
  */
 package jxon.language;
-
-import lifya.Token;
-import lifya.lexeme.Symbol;
-import lifya.lookahead.Rule;
-
-/**
- * <p>Title: JXONValue</p>
- *
- * <p>Description: Rule for JXON/JSON values.</p>
- *
- */
-public class JXONValue extends Rule{
-	/**
-	 * Type of the Syntactic Rule for JXON values
-	 */
-	public final static String TAG = "VALUE"; 
-	
-	/**
-	 * Creates a JXON value rule
-	 * @param parser Syntactic parser using the rule
-	 */
-	public JXONValue(JXONParser parser) { super(TAG, parser); }
-    
-	/**
-	 * Determines if the JXON value rule can start with the given token
-	 * @param t Token to analyze
-	 * @return <i>true</i> If the rule can start with the given token <i>false</i> otherwise
-	 */
-	@Override
-	public boolean startsWith(Token t) {
-		if(t.type().equals(Token.ERROR)) return false;
-		if(t.type().equals(Symbol.TAG)) {
-			char c = (char)t.value();
-			return c=='[' || c== '{';
-		}
-		return true; 
-	}
-    
-	/**
-	 * Creates a JXON value rule token using the <i>current</i> token as first token to analyze
-	 * @param lexer Lexer 
-	 * @param current Initial token
-	 * @return Rule token
-	 */
-	@Override
-	public Token analyze(lifya.Lexer lexer, Token current) {
-		if(current.type()==Symbol.TAG) {
-			char c = (char)current.value();
-			switch(c) {
-				case '[': return parser.rule(JXONList.TAG).analyze(lexer, current);
-				case '{': return parser.rule(JXONObj.TAG).analyze(lexer, current);
-				default: return current.toError();
-			}
-		}
-		return current;
-	}
-}

@@ -36,61 +36,28 @@
  * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
  * @version 1.0
  */
-package jxon.language;
+package jxon;
 
-import lifya.Token;
-import lifya.lexeme.Symbol;
-import lifya.lookahead.Rule;
+import java.io.IOException;
+
+import jxon.language.JXONLanguage;
+import speco.jxon.JXON;
 
 /**
- * <p>Title: JXONValue</p>
+ * <p>Title:JXON Reader</p>
  *
- * <p>Description: Rule for JXON/JSON values.</p>
+ * <p>Description: Reads JSON/JXON (JSON that can store blob/byte arrays directly using Base64).</p>
  *
  */
-public class JXONValue extends Rule{
+public class JXONReader {
 	/**
-	 * Type of the Syntactic Rule for JXON values
+	 * Parses a String for a JSON/JXON object
+	 * @param input Input string
+	 * @return The JSON/JSON represented by the input String
+	 * @throws IOException If the input String does not represent a JSON/JXON object
 	 */
-	public final static String TAG = "VALUE"; 
-	
-	/**
-	 * Creates a JXON value rule
-	 * @param parser Syntactic parser using the rule
-	 */
-	public JXONValue(JXONParser parser) { super(TAG, parser); }
-    
-	/**
-	 * Determines if the JXON value rule can start with the given token
-	 * @param t Token to analyze
-	 * @return <i>true</i> If the rule can start with the given token <i>false</i> otherwise
-	 */
-	@Override
-	public boolean startsWith(Token t) {
-		if(t.type().equals(Token.ERROR)) return false;
-		if(t.type().equals(Symbol.TAG)) {
-			char c = (char)t.value();
-			return c=='[' || c== '{';
-		}
-		return true; 
-	}
-    
-	/**
-	 * Creates a JXON value rule token using the <i>current</i> token as first token to analyze
-	 * @param lexer Lexer 
-	 * @param current Initial token
-	 * @return Rule token
-	 */
-	@Override
-	public Token analyze(lifya.Lexer lexer, Token current) {
-		if(current.type()==Symbol.TAG) {
-			char c = (char)current.value();
-			switch(c) {
-				case '[': return parser.rule(JXONList.TAG).analyze(lexer, current);
-				case '{': return parser.rule(JXONObj.TAG).analyze(lexer, current);
-				default: return current.toError();
-			}
-		}
-		return current;
-	}
+	public static JXON apply(String input) throws IOException{
+		JXONLanguage parser = new JXONLanguage();
+		return parser.get(input);
+	}     
 }
