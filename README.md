@@ -1,34 +1,22 @@
-# jxon
-Java/Javascript components for dealing with JSON and JXON (a JSON object that can store Base64 values) based on the numtseng infrastructure. 
+# json
+Java components for processing JSON. 
 
-&nbsp;Java components require:
+&nbsp;Requires:
 
 &nbsp;kerno.jar, speco.jar, kompari.jar, lifya.jar
 
 &nbsp;Available at <A HREF="https://github.com/jgomezpe/libs/">https://github.com/jgomezpe/libs/</A>
-
-&nbsp;Javascript components require:
-
-&nbsp;base64.js, kompari.js, and lifya.js (lifya_wrap.js)
-
-&nbsp;Available at <A HREF="https://numtseng.com/modules/konekti/">https://numtseng.com/modules/konekti/</A>
-and <A HREF="https://numtseng.com/modules/">https://numtseng.com/modules/</A>
 
 <h3>Version 1.0</h3>
 <h3>Copyright (c)</h3>
 &nbsp;Author: <A HREF="https://disi.unal.edu.co/~jgomezpe/"> Jonatan Gomez-Perdomo </A>
 &nbsp;E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A>
 
-&nbsp;Java ready to use: <A HREF="https://github.com/jgomezpe/libs/jxon.jar">https://github.com/jgomezpe/libs/jxon.jar</A>
+&nbsp;Java ready to use: <A HREF="https://github.com/jgomezpe/libs/jxon.jar">https://github.com/jgomezpe/libs/json.jar</A>
 
-&nbsp;Javascript ready to use: <A HREF="https://numtseng.com/modules/konekti/Konekti.js">https://numtseng.com/modules/konekti/Konekti.js</A>, <A HREF="https://numtseng.com/modules/jxon.js">https://numtseng.com/modules/jxon.js</A>, and 
- <A HREF="https://numtseng.com/modules/jxon_wrap.js">https://numtseng.com/modules/jxon_wrap.js</A>
+&nbsp;Java source code: <A HREF="https://github.com/jgomezpe/json/">https://github.com/jgomezpe/json/</A>
 
-&nbsp;Java/Javascript source code: <A HREF="https://github.com/jgomezpe/kompari/">https://github.com/jgomezpe/jxon/</A>
-
-&nbsp;Java API documentation: <A HREF="https://numtseng.com/api/java/jxon">https://numtseng.com/api/java/jxon/</A>
-
-&nbsp;Javascript API documentation: <A HREF="https://numtseng.com/api/jxon/">https://numtseng.com/api/jxon/</A>
+&nbsp;Java API documentation: <A HREF="https://numtseng.com/api/java/json">https://numtseng.com/api/java/json/</A>
 
 &nbsp;All rights reserved.
 
