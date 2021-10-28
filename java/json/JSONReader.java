@@ -13,16 +13,16 @@ import speco.json.JSON;
 
 public class JSONReader extends Language<JSON>{
 	
-	protected final static String number="<number> = [\\+|\\-]'\\d+(\\.\\d+)'([e|E][\\+|\\-]'\\d+)'\n";
+	protected final static String number="<number> = [\\+|\\-]?\\d+(\\.\\d+)?([e|E][\\+|\\-]?\\d+)?\n";
 	protected final static String space ="<%space> = [\\n|\\r|\\t|\\s]+\n";
 	protected final static String string="<string> = \"(-[\\\\|\"]|\\\\([\\\\|n|r|t|\"]|u[A-F|a-f|\\d][A-F|a-f|\\d][A-F|a-f|\\d][A-F|a-f|\\d]))*\"\n";
 	protected final static String reserved ="<reserved>  = {true|false|null}\n";
 	
-	protected final static String object ="<object> :- \\{ <attrlist>' \\}.\n";
+	protected final static String object ="<object> :- \\{ <attrlist>? \\}.\n";
 	protected final static String attrlist ="<attrlist> :- <attribute> (, <attribute>)*.\n";
 	protected final static String attribute ="<attribute> :- <string> \\: <value>.\n";
 	protected final static String value ="<value> :- <object> | <list> | <reserved> | <number> | <string>.\n";
-	protected final static String list ="<list> :- \\[ <itemlist>' \\].\n";
+	protected final static String list ="<list> :- \\[ <itemlist>? \\].\n";
 	protected final static String itemlist ="<itemlist> :- <value> (, <value>)*.\n";
 	
 	protected final static String ATTRLIST = "<attrlist>";

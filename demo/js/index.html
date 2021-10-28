@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type='text/javascript' src='https://numtseng.com/modules/base64.js'></script> 
+    <script type='text/javascript' src='https://numtseng.com/modules/kompari.js'></script> 
+    <script type='text/javascript' src='https://numtseng.com/modules/lifya.js'></script> 
+    <script type='text/javascript' src='https://numtseng.com/modules/json.js'></script> 
+</head>
+<body>   
+<div id='main' style='height:100%;width:100%'></div>
+<script>
+	function json_test() {
+	    console.log("****************Language********************")
+	    var language = new JSONReader()
+	    var json = {"id":123456, "price":34.56, "void":[], "discount":[123.45,-23.56,67.88e-12], "empty":{}}
+	    var jx = {"sss":null, "dummy":jx}
+	    var program = Stringifier.apply(json)
+	    try {
+	        console.log("*****Testing with****")
+	        console.log(program)
+	        var source = new Source("view", program)
+	        var t = language.get(source)
+	        console.log("*****Obtained****")
+	        console.log(Stringifier.apply(t))
+	    } catch (e) { console.log('Error:'+e) }          
+	}
+	
+	document.getElementById('main').innerHTML = json_test()
+</script>   
+</body>
+</html>

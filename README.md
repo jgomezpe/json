@@ -1,24 +1,30 @@
 # json
-Java components for processing JSON. 
+JSON processing for the numtseng infrastructure. 
 
-&nbsp;Requires:
-
-&nbsp;kerno.jar, speco.jar, kompari.jar, lifya.jar
-
-&nbsp;Available at <A HREF="https://github.com/jgomezpe/libs/">https://github.com/jgomezpe/libs/</A>
+&nbsp;Source code: <A HREF="https://github.com/jgomezpe/json/">https://github.com/jgomezpe/json/</A>
 
 <h3>Version 1.0</h3>
 <h3>Copyright (c)</h3>
 &nbsp;Author: <A HREF="https://disi.unal.edu.co/~jgomezpe/"> Jonatan Gomez-Perdomo </A>
+
 &nbsp;E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A>
 
-&nbsp;Java ready to use: <A HREF="https://github.com/jgomezpe/libs/jxon.jar">https://github.com/jgomezpe/libs/json.jar</A>
-
-&nbsp;Java source code: <A HREF="https://github.com/jgomezpe/json/">https://github.com/jgomezpe/json/</A>
-
-&nbsp;Java API documentation: <A HREF="https://numtseng.com/api/java/json">https://numtseng.com/api/java/json/</A>
-
 &nbsp;All rights reserved.
+
+<h3>Java</h3>
+&nbsp;Ready to use: <A HREF="https://github.com/jgomezpe/libs/json.jar">https://github.com/jgomezpe/libs/json.jar</A>
+
+&nbsp;API documentation: <A HREF="https://numtseng.com/api/json/java/">https://numtseng.com/api/json/java/</A>
+
+&nbsp;Compilation requires lifya.jar available at <A HREF="https://github.com/jgomezpe/libs/">https://github.com/jgomezpe/libs/</A>
+
+<h3>JavaScript</h3>
+
+&nbsp;Ready to use: <A HREF="https://numtseng.com/modules/json.js">https://numtseng.com/modules/json.js</A>
+
+&nbsp;Requires kompari.js and lifya.js available at <A HREF="https://numtseng.com/modules/">https://numtseng.com/modules/</A>
+
+&nbsp;API documentation: <A HREF="https://numtseng.com/api/json/js/">https://numtseng.com/api/json/js/</A>
 
 <h3>Licence</h3>
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
