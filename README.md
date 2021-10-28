@@ -26,7 +26,7 @@ JSON processing for the numtseng infrastructure.
 
 &nbsp;API documentation: <A HREF="https://numtseng.com/api/json/js/">https://numtseng.com/api/json/js/</A>
 
-<h3>Licence</h3>
+<h3>License</h3>
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
 <ul>
