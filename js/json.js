@@ -84,14 +84,9 @@ class JSONReader extends Language{
      * @return Semantic token (from syntactic token)
      */
     mean(t) {
-        t = ProcessDerivationTree.eliminate_lambda(t)
-        t = ProcessDerivationTree.eliminate_token(t, "<list>oper", null)
-        t = ProcessDerivationTree.replace(t, JSONReader.ITEMLIST+"-item-1", JSONReader.ITEMLIST)
-        t = ProcessDerivationTree.replace(t, JSONReader.ATTRLIST+"-item-1", JSONReader.ATTRLIST)
-        t = ProcessDerivationTree.reduce_size_1(t)
-        t = ProcessDerivationTree.reduce_exp(t, JSONReader.LIST)
-        t = ProcessDerivationTree.reduce_exp(t, JSONReader.ITEMLIST)
-        t = ProcessDerivationTree.reduce_exp(t, JSONReader.ATTRLIST)
+        t = ProcessDerivationTree.apply(t, [['LAMBDA'], ['DEL',"<list>oper"], 
+            ['REPLACE', "<itemlist>-item-1", "<itemlist>"], ['REPLACE', "<attrlist>-item-1", "<attrlist>"],
+            ['REDUCE'], ['REDUCE', '<list>'], ['REDUCE', '<itemlist>'], ['REDUCE', '<attrlist>']])
         var json = this.process(t)
         t.value = json
         return t
