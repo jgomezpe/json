@@ -11,18 +11,16 @@ JSON processing for the numtseng infrastructure.
 
 &nbsp;All rights reserved.
 
-<h3>Java</h3>
-&nbsp;Ready to use: <A HREF="https://github.com/jgomezpe/libs/json.jar">https://github.com/jgomezpe/libs/json.jar</A>
-
-&nbsp;API documentation: <A HREF="https://numtseng.com/api/json/java/">https://numtseng.com/api/json/java/</A>
-
-&nbsp;Compilation requires lifya.jar available at <A HREF="https://github.com/jgomezpe/libs/">https://github.com/jgomezpe/libs/</A>
-
 <h3>JavaScript</h3>
 
-&nbsp;Ready to use: <A HREF="https://numtseng.com/modules/json.js">https://numtseng.com/modules/json.js</A>
+&nbsp;Ready to use: <A HREF="https://jgomezpe.github.io/json/src/json.js">https://jgomezpe.github.io/json/src/json.js</A>
 
-&nbsp;Requires kompari.js and lifya.js available at <A HREF="https://numtseng.com/modules/">https://numtseng.com/modules/</A>
+&nbsp;Requires:
+
+<ul>
+    <li> kompari.js available at <A HREF="https://jgomezpe.github.io/kompari/src/kompari.js">https://jgomezpe.github.io/kompari/src/kompari.js</A> and </li>
+    <li> lifya.js available at <A HREF="https://jgomezpe.github.io/lifya/src/lifya.js">https://jgomezpe.github.io/lifya/src/lifya.js</A>.</li>
+</ul>    
 
 &nbsp;API documentation: <A HREF="https://numtseng.com/api/json/js/">https://numtseng.com/api/json/js/</A>
 
