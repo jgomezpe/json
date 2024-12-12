@@ -13,93 +13,50 @@
 * @version 1.0
 */
 
-// JSON Reader with lifya
+// JSON Reader with lifya (partially generated (grammar part using lifya demo)
 class JSONReader extends Language{
-    
-    static number="<number> = [\\+|\\-]?\\d+(\\.\\d+)?([e|E][\\+|\\-]?\\d+)?\n"
-    static space ="<%space> = [\\n|\\r|\\t|\\s]+\n"
-    static string="<string> = \"(-[\\\\|\"]|\\\\([\\\\|n|r|t|\"]|u[A-F|a-f|\\d][A-F|a-f|\\d][A-F|a-f|\\d][A-F|a-f|\\d]))*\"\n"
-    static reserved ="<reserved>  = {true|false|null}\n"
-    
-    static object ="<object> :- \\{ <attrlist>? \\}.\n"
-    static attrlist ="<attrlist> :- <attribute> (, <attribute>)*.\n"
-    static attribute ="<attribute> :- <string> \\: <value>.\n"
-    static value ="<value> :- <object> | <list> | <reserved> | <number> | <string>.\n"
-    static list ="<list> :- \\[ <itemlist>? \\].\n"
-    static itemlist ="<itemlist> :- <value> (, <value>)*.\n"
-    
-    static ATTRLIST = "<attrlist>"
-    static ITEMLIST = "<itemlist>"
-    static OBJECT = "<object>"
-    static LIST = "<list>"
-    static ATTRIBUTE = "<attribute>"
-    static STRING = "<string>"
-    static RESERVED = "<reserved>"
-    static NUMBER = "<number>"
-
-    static parser=JSONReader.string+JSONReader.number+JSONReader.reserved+JSONReader.space+
-                    JSONReader.object+JSONReader.attrlist+JSONReader.attribute+JSONReader.value+
-                    JSONReader.list+JSONReader.itemlist
-    
-    static init() { return ParserGenerator.parser(this.parser,JSONReader.OBJECT) }
-
-    
-    constructor() { super(JSONReader.init()) }
-
-    process(t) {
-        Array<Token> a;
-        switch(t.type) {
-            case JSONReader.ATTRLIST:
-                var json = {}
-                var a = t.value
-                for( var i=0; i<a.length; i++ ) {
-                    var b = a[i].value
-                    var key = ParserGenerator.raw_string(b[0].value,'"')
-                    var attr = this.process(b[1])
-                    json[key] = attr
-                }
-                return json
-            case JSONReader.STRING: return ParserGenerator.raw_string(t.value,'"')
-            case JSONReader.NUMBER: return parseFloat(t.value)
-            case JSONReader.RESERVED:
-                switch(t.value) {
-                    case "true": return true
-                    case "false": return false
-                    default: return null
-                }
-            case JSONReader.LIST: return []
-            case JSONReader.OBJECT: return {}
-            default:
-                var a = t.value
-                var list = []
-                for( var i=0; i<a.length; i++)
-                    list.push(this.process(a[i]))
-                return list
-        }       
+  constructor(){
+    super( ParserGenerator.parser("<string> = \"(-[\\\\|\"]|\\\\([\\\\|n|r|t|\"]|u[A-F|a-f|\\d][A-F|a-f|\\d][A-F|a-f|\\d][A-F|a-f|\\d]))*\"\n<number> = [\\+|\\-]?\\d+(\\.\\d+)?([e|E][\\+|\\-]?\\d+)?\n<reserved>  = {true|false|null}\n<%space> = [\\n|\\r|\\t|\\s]+\n<object> :- \\{ <attrlist>? \\}.\n<attrlist> :- <attribute> (, <attribute>)*.\n<attribute> :- <string> \\: <value>.\n<value> :- <object> | <list> | <reserved> | <number> | <string>.\n<list> :- \\[ <itemlist>? \\].\n<itemlist> :- <value> (, <value>)*.\n", '<object>'))
+  }
+  process(t) { 
+    Array<Token> a
+    switch(t.type) {
+      case '<attrlist>':
+        var json = {}
+        var a = t.value
+        for( var i=0; i<a.length; i++ ) {
+          var b = a[i].value
+          var key = ParserGenerator.raw_string(b[0].value,'"')
+          var attr = this.process(b[1])
+          json[key] = attr
+        }
+        return json
+      case '<string>': return ParserGenerator.raw_string(t.value,'"')
+      case '<number>': return parseFloat(t.value)
+      case '<reserved>':
+        switch(t.value) {
+          case 'true': return true
+          case 'false': return false
+          default: return null
+        }
+      case '<list>': return []
+      case '<object>': return {}
+      default:
+        var a = t.value
+        var list = []
+        for( var i=0; i<a.length; i++)
+          list.push(this.process(a[i]))
+        return list
     }
-        
-    /**
-     * 
-     * @param t Creates an object with meaning
-     * @return Semantic token (from syntactic token)
-     */
-    mean(t) {
-        t = ProcessDerivationTree.apply(t, [['LAMBDA'], ['DEL',"<list>oper"], 
-            ['REPLACE', "<itemlist>-item-1", "<itemlist>"], ['REPLACE', "<attrlist>-item-1", "<attrlist>"],
-            ['REDUCE'], ['REDUCE', '<list>'], ['REDUCE', '<itemlist>'], ['REDUCE', '<attrlist>']])
-        var json = this.process(t)
-        t.value = json
-        return t
-    }   
-    
-    /**
-     * Parses a String for a JSON/JXON object
-     * @param input Input string
-     * @return The JSON/JSON represented by the input String
-     * @throws IOException If the input String does not represent a JSON/JXON object
-     */
-    apply(input){
-        var parser = new JSONReader()
-        return parser.get(new Source("noname",input))
-    }       
+  }
+  mean(t) {
+    t = ProcessDerivationTree.apply(t, [["LAMBDA"],["DEL","<list>oper"],["REPLACE","<itemlist>-item-1","<itemlist>"],["REPLACE","<attrlist>-item-1","<attrlist>"],["REDUCE"],["REDUCE","<list>"],["REDUCE","<itemlist>"],["REDUCE","<attrlist>"]])
+    var obj = this.process(t)
+    t.value = obj
+    return t
+  }
+  apply(input){
+    return this.get(new Source('noname',input))
+  }
 }
+
